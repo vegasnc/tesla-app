@@ -11,12 +11,14 @@ A Tesla Concept Mobile App project created in flutter using Provider. Code works
 ![Start Screen](/docs/samsung_img1.png)
 ![Start Screen](/docs/samsung_img2.png)
 ![Start Screen](/docs/samsung_img3.png)
+![Start Screen](/docs/samsung_img4.png)
 
 ### Iphone
 
 ![Start Screen](/docs/iphone_img1.png)
 ![Start Screen](/docs/iphone_img2.png)
 ![Start Screen](/docs/iphone_img3.png)
+![Start Screen](/docs/iphone_img4.png)
 
 ## How to Use
 
