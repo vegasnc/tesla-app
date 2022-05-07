@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'dart:io' show Platform;
 
 import 'package:tesla_mobile_app_concept/screens/screens.dart';
+import 'package:tesla_mobile_app_concept/util/price_tracker.dart';
 
 class CarSummary extends StatefulWidget {
   const CarSummary({Key? key}) : super(key: key);
@@ -13,6 +16,7 @@ class CarSummary extends StatefulWidget {
 }
 
 class _CarSummaryState extends State<CarSummary> {
+  final value = NumberFormat("#,##0", "en_US");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +61,7 @@ class _CarSummaryState extends State<CarSummary> {
                     ),
                     SizedBox(height: 24.h),
                     Text(
-                      '\$60,700',
+                      '\$${value.format(Provider.of<PriceTracker>(context, listen: false).totalAmount)}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 36.sp,

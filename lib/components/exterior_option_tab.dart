@@ -52,6 +52,18 @@ class _ExteriorOptionState extends State<ExteriorOption> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      var totalAmount =
+          Provider.of<PriceTracker>(context, listen: false).totalAmount;
+      Provider.of<PriceTracker>(context, listen: false)
+          .setAmount(totalAmount + 2000);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(

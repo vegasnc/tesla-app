@@ -24,6 +24,15 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      Provider.of<PriceTracker>(context, listen: false).addAmount(5000);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Stack(
@@ -62,9 +71,16 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
                         index: 0,
                         activeOption: activeOption,
                         onPressed: () {
+                          if (activeOption == 1) {
+                            var totalAmount = Provider.of<PriceTracker>(context,
+                                    listen: false)
+                                .totalAmount;
+                            Provider.of<PriceTracker>(context, listen: false)
+                                .setAmount(totalAmount + 2000);
+                          }
                           selectOption(0);
                           Provider.of<PriceTracker>(context, listen: false)
-                              .setPrice(63700);
+                              .setAmount(63700);
                         },
                       ),
                       SizedBox(
@@ -77,8 +93,11 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
                         activeOption: activeOption,
                         onPressed: () {
                           selectOption(1);
+                          var totalAmount =
+                              Provider.of<PriceTracker>(context, listen: false)
+                                  .totalAmount;
                           Provider.of<PriceTracker>(context, listen: false)
-                              .setPrice(60700);
+                              .setAmount(totalAmount - 2000);
                         },
                       ),
                     ],

@@ -52,7 +52,7 @@ class _CarOptionState extends State<CarOption> {
                 onPressed: () {
                   selectOption(0);
                   Provider.of<PriceTracker>(context, listen: false)
-                      .setPrice(55700);
+                      .setAmount(55700);
                 },
               ),
               SizedBox(
@@ -66,7 +66,7 @@ class _CarOptionState extends State<CarOption> {
                 onPressed: () {
                   selectOption(1);
                   Provider.of<PriceTracker>(context, listen: false)
-                      .setPrice(46700);
+                      .setAmount(46700);
                 },
               ),
             ],

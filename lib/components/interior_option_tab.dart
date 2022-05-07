@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:tesla_mobile_app_concept/components/components.dart';
+import 'package:tesla_mobile_app_concept/util/price_tracker.dart';
 
 class InteriorOption extends StatefulWidget {
   const InteriorOption({Key? key, required this.onPressed}) : super(key: key);
@@ -14,11 +17,24 @@ class InteriorOption extends StatefulWidget {
 class _InteriorOptionState extends State<InteriorOption> {
   int activeOption = 0;
   int colorTracker = 1;
+  final value = NumberFormat("#,##0", "en_US");
 
   void selectOption(int selectedOption) {
     setState(() {
       activeOption = selectedOption;
       colorTracker = selectedOption + 1;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      var totalAmount =
+          Provider.of<PriceTracker>(context, listen: false).totalAmount;
+      Provider.of<PriceTracker>(context, listen: false)
+          .setAmount(totalAmount + 1000);
     });
   }
 
@@ -77,6 +93,14 @@ class _InteriorOptionState extends State<InteriorOption> {
                     children: [
                       ColorOption(
                           onPressed: () {
+                            if (colorTracker == 2) {
+                              var totalAmount = Provider.of<PriceTracker>(
+                                      context,
+                                      listen: false)
+                                  .totalAmount;
+                              Provider.of<PriceTracker>(context, listen: false)
+                                  .setAmount(totalAmount + 1000);
+                            }
                             selectOption(0);
                           },
                           colorTracker: colorTracker,
@@ -86,6 +110,12 @@ class _InteriorOptionState extends State<InteriorOption> {
                       ColorOption(
                           onPressed: () {
                             selectOption(1);
+
+                            var totalAmount = Provider.of<PriceTracker>(context,
+                                    listen: false)
+                                .totalAmount;
+                            Provider.of<PriceTracker>(context, listen: false)
+                                .setAmount(totalAmount - 1000);
                           },
                           colorTracker: colorTracker,
                           color: Colors.black,
@@ -97,7 +127,7 @@ class _InteriorOptionState extends State<InteriorOption> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '\$58,700',
+                        '\$${value.format(Provider.of<PriceTracker>(context, listen: false).totalAmount)}',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 28.sp,

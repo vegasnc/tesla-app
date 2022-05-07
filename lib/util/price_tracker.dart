@@ -5,8 +5,22 @@ class PriceTracker extends ChangeNotifier {
 
   int get totalAmount => _totalAmount;
 
-  void setPrice(int price) {
-    _totalAmount = price;
+  void setAmount(int amount) {
+    _totalAmount = amount;
     notifyListeners();
+  }
+
+  void addAmount(int amount) {
+    _totalAmount = amount;
+    notifyListeners();
+  }
+
+  void substractAmount(int amount) {
+    _totalAmount = _totalAmount - amount;
+    notifyListeners();
+  }
+
+  void resetPrice() {
+    _totalAmount = 55700;
   }
 }
