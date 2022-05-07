@@ -4,6 +4,20 @@ A Tesla Concept Mobile App project created in flutter using Provider. Code works
 
 - Link to Design: https://dribbble.com/shots/6201044-Tesla-Model-Y-Concept-Ui-Freebie-Figma
 
+## Preview
+
+### Android
+
+![Start Screen](/docs/samsung_img1.png)
+![Start Screen](/docs/samsung_img2.png)
+![Start Screen](/docs/samsung_img3.png)
+
+### Iphone
+
+![Start Screen](/docs/iphone_img1.png)
+![Start Screen](/docs/iphone_img2.png)
+![Start Screen](/docs/iphone_img3.png)
+
 ## How to Use
 
 **Step 1:**
@@ -33,3 +47,4 @@ flutter run
 ## Conclusion
 
 I Enjoyed building this project - Hope you find it as interesting as I did. 🙂
+Built By [Ejiro-Oghene Avwerhota](https://www.linkedin.com/in/ejiro-oghene-avwerhota-5369a013b/)

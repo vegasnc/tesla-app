@@ -92,7 +92,7 @@ class _InteriorOptionState extends State<InteriorOption> {
                           onPressed: () {
                             if (colorTracker == 2) {
                               Provider.of<PriceTracker>(context, listen: false)
-                                  .setAmount(1000);
+                                  .addAmount(1000);
                             }
                             selectOption(0);
                           },
