@@ -29,7 +29,7 @@ class _CarSummaryState extends State<CarSummary> {
               color: Colors.transparent,
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.65),
+                  top: MediaQuery.of(context).size.height * 0.56),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 78.w),
                 decoration: const BoxDecoration(

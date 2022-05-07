@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tesla_mobile_app_concept/util/price_tracker.dart';
 
 void main() {
+  //bool kReleaseMode = true;
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => PriceTracker(),

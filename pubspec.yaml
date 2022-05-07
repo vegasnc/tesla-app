@@ -39,6 +39,7 @@ dependencies:
   carousel_slider: ^4.1.1
   font_awesome_flutter: ^10.1.0
   provider: ^6.0.2
+  device_preview: ^1.0.0
 
 dev_dependencies:
   flutter_test:

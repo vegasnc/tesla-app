@@ -53,7 +53,6 @@ class _CarDetailState extends State<CarDetail> with TickerProviderStateMixin {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: proceed),
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
