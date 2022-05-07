@@ -56,10 +56,7 @@ class _ExteriorOptionState extends State<ExteriorOption> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      var totalAmount =
-          Provider.of<PriceTracker>(context, listen: false).totalAmount;
-      Provider.of<PriceTracker>(context, listen: false)
-          .setAmount(totalAmount + 2000);
+      Provider.of<PriceTracker>(context, listen: false).addAmount(2000);
     });
   }
 
@@ -191,45 +188,7 @@ class _ExteriorOptionState extends State<ExteriorOption> {
             child: Column(
               children: [
                 SizedBox(height: 28.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '\$${value.format(Provider.of<PriceTracker>(context, listen: false).totalAmount)}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60.w,
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        width: double.infinity,
-                        // height: 64.h,
-                        child: TextButton(
-                            style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(vertical: 24.h)),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(60),
-                                  side: const BorderSide(
-                                      color: Color(0xFFD01000)),
-                                ))),
-                            onPressed: widget.onPressed,
-                            child: Text(
-                              'NEXT',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                              ),
-                            )),
-                      ),
-                    )
-                  ],
-                )
+                BottomRow(onPressed: widget.onPressed),
               ],
             ),
           )

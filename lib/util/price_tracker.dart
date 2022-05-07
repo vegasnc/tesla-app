@@ -11,7 +11,7 @@ class PriceTracker extends ChangeNotifier {
   }
 
   void addAmount(int amount) {
-    _totalAmount = amount;
+    _totalAmount = _totalAmount + amount;
     notifyListeners();
   }
 

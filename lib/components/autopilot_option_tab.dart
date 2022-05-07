@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:tesla_mobile_app_concept/components/components.dart';
 import 'package:tesla_mobile_app_concept/util/price_tracker.dart';
 
 class AutoPilotOption extends StatefulWidget {
@@ -15,7 +15,6 @@ class AutoPilotOption extends StatefulWidget {
 
 class _AutoPilotOptionState extends State<AutoPilotOption> {
   int activeOption = 0;
-  final value = NumberFormat("#,##0", "en_US");
 
   void selectOption(int selectedOption) {
     setState(() {
@@ -42,7 +41,7 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
             color: Colors.transparent,
             alignment: Alignment.bottomCenter,
             padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.8),
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.55),
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 40.w, horizontal: 48.h),
               decoration: const BoxDecoration(
@@ -72,15 +71,10 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
                         activeOption: activeOption,
                         onPressed: () {
                           if (activeOption == 1) {
-                            var totalAmount = Provider.of<PriceTracker>(context,
-                                    listen: false)
-                                .totalAmount;
                             Provider.of<PriceTracker>(context, listen: false)
-                                .setAmount(totalAmount + 2000);
+                                .addAmount(2000);
                           }
                           selectOption(0);
-                          Provider.of<PriceTracker>(context, listen: false)
-                              .setAmount(63700);
                         },
                       ),
                       SizedBox(
@@ -93,11 +87,9 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
                         activeOption: activeOption,
                         onPressed: () {
                           selectOption(1);
-                          var totalAmount =
-                              Provider.of<PriceTracker>(context, listen: false)
-                                  .totalAmount;
+
                           Provider.of<PriceTracker>(context, listen: false)
-                              .setAmount(totalAmount - 2000);
+                              .substractAmount(2000);
                         },
                       ),
                     ],
@@ -111,45 +103,7 @@ class _AutoPilotOptionState extends State<AutoPilotOption> {
                     ),
                   ),
                   SizedBox(height: 46.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '\$${value.format(Provider.of<PriceTracker>(context, listen: false).totalAmount)}',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28.sp,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.w,
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      EdgeInsets.symmetric(vertical: 24.h)),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(60),
-                                    side: const BorderSide(
-                                        color: Color(0xFFD01000)),
-                                  ))),
-                              onPressed: widget.onPressed,
-                              child: Text(
-                                'NEXT',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                        ),
-                      )
-                    ],
-                  )
+                  BottomRow(onPressed: widget.onPressed),
                 ],
               ),
             ),

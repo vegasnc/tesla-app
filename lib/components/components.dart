@@ -6,3 +6,5 @@ export 'car_option_tab.dart';
 export 'autopilot_option_tab.dart';
 export 'tab_header.dart';
 export 'performance_details.dart';
+export 'app_button.dart';
+export 'bottom_row.dart';

@@ -29,7 +29,7 @@ class _CarSummaryState extends State<CarSummary> {
               color: Colors.transparent,
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.7),
+                  top: MediaQuery.of(context).size.height * 0.65),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 78.w),
                 decoration: const BoxDecoration(
@@ -69,47 +69,7 @@ class _CarSummaryState extends State<CarSummary> {
                       ),
                     ),
                     SizedBox(height: 74.h),
-                    SizedBox(
-                      width: double.infinity,
-                      child: TextButton(
-                          style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                  EdgeInsets.symmetric(vertical: 24.h)),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(60),
-                                side:
-                                    const BorderSide(color: Color(0xFFD01000)),
-                              ))),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const SplashScreen();
-                              },
-                            ));
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Platform.isIOS == true
-                                    ? Icons.apple
-                                    : FontAwesomeIcons.google,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                'Pay',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24.sp,
-                                ),
-                              ),
-                            ],
-                          )),
-                    )
+                    const CarSummaryButton()
                   ],
                 ),
               ),
@@ -125,6 +85,54 @@ class _CarSummaryState extends State<CarSummary> {
           ],
         ),
       )),
+    );
+  }
+}
+
+class CarSummaryButton extends StatelessWidget {
+  const CarSummaryButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: TextButton(
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 24.h)),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(60),
+                side: const BorderSide(color: Color(0xFFD01000)),
+              ))),
+          onPressed: () {
+            Provider.of<PriceTracker>(context, listen: false).resetPrice();
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return const SplashScreen();
+              },
+            ));
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Platform.isIOS == true ? Icons.apple : FontAwesomeIcons.google,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 3.w,
+              ),
+              Text(
+                'Pay',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.sp,
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

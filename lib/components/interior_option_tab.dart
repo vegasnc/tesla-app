@@ -31,10 +31,7 @@ class _InteriorOptionState extends State<InteriorOption> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      var totalAmount =
-          Provider.of<PriceTracker>(context, listen: false).totalAmount;
-      Provider.of<PriceTracker>(context, listen: false)
-          .setAmount(totalAmount + 1000);
+      Provider.of<PriceTracker>(context, listen: false).addAmount(1000);
     });
   }
 
@@ -48,7 +45,7 @@ class _InteriorOptionState extends State<InteriorOption> {
             color: Colors.transparent,
             alignment: Alignment.bottomCenter,
             padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.65),
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.5),
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 40.w, horizontal: 48.h),
               decoration: const BoxDecoration(
@@ -94,12 +91,8 @@ class _InteriorOptionState extends State<InteriorOption> {
                       ColorOption(
                           onPressed: () {
                             if (colorTracker == 2) {
-                              var totalAmount = Provider.of<PriceTracker>(
-                                      context,
-                                      listen: false)
-                                  .totalAmount;
                               Provider.of<PriceTracker>(context, listen: false)
-                                  .setAmount(totalAmount + 1000);
+                                  .setAmount(1000);
                             }
                             selectOption(0);
                           },
@@ -111,11 +104,8 @@ class _InteriorOptionState extends State<InteriorOption> {
                           onPressed: () {
                             selectOption(1);
 
-                            var totalAmount = Provider.of<PriceTracker>(context,
-                                    listen: false)
-                                .totalAmount;
                             Provider.of<PriceTracker>(context, listen: false)
-                                .setAmount(totalAmount - 1000);
+                                .substractAmount(1000);
                           },
                           colorTracker: colorTracker,
                           color: Colors.black,
@@ -123,44 +113,7 @@ class _InteriorOptionState extends State<InteriorOption> {
                     ],
                   ),
                   SizedBox(height: 46.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '\$${value.format(Provider.of<PriceTracker>(context, listen: false).totalAmount)}',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28.sp,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.w,
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      EdgeInsets.symmetric(vertical: 24.h)),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(60),
-                                    side: const BorderSide(
-                                        color: Color(0xFFD01000)),
-                                  ))),
-                              onPressed: widget.onPressed,
-                              child: Text(
-                                'NEXT',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                ),
-                              )),
-                        ),
-                      )
-                    ],
-                  )
+                  BottomRow(onPressed: widget.onPressed),
                 ],
               ),
             ),

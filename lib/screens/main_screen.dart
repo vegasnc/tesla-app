@@ -48,6 +48,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Colors.black,
         centerTitle: true,
@@ -230,45 +231,56 @@ class TeslaModelY extends StatelessWidget {
                   ),
                 ],
               ),
-        /* SizedBox(
-          height: 70.h,
-        ),*/
         const Spacer(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 88.h),
-          child: SizedBox(
-            width: double.infinity,
-            // height: 64.h,
-            child: TextButton(
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 24.h)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60),
-                      side: const BorderSide(color: Color(0xFFD01000)),
-                    ))),
-                onPressed: () {
-                  if (carStatus == CarStatus.available) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CarDetail(),
-                        ));
-                  } else {}
-                },
-                child: Text(
-                  carStatus == CarStatus.available ? 'ORDER NOW' : 'RESERVE',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.sp,
-                  ),
-                )),
-          ),
+          child: MainScreenButton(carStatus: carStatus),
         ),
         SizedBox(
           height: 48.h,
         ),
       ],
+    );
+  }
+}
+
+class MainScreenButton extends StatelessWidget {
+  const MainScreenButton({
+    Key? key,
+    required this.carStatus,
+  }) : super(key: key);
+
+  final CarStatus carStatus;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      // height: 64.h,
+      child: TextButton(
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 24.h)),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(60),
+                side: const BorderSide(color: Color(0xFFD01000)),
+              ))),
+          onPressed: () {
+            if (carStatus == CarStatus.available) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CarDetail(),
+                  ));
+            } else {}
+          },
+          child: Text(
+            carStatus == CarStatus.available ? 'ORDER NOW' : 'RESERVE',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.sp,
+            ),
+          )),
     );
   }
 }
