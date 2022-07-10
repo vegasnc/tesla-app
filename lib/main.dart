@@ -6,6 +6,7 @@ import 'package:tesla_mobile_app_concept/util/price_tracker.dart';
 
 void main() {
   //bool kReleaseMode = true;
+  //GitTest
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => PriceTracker(),
