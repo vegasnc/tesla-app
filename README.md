@@ -49,4 +49,4 @@ flutter run
 ## Conclusion
 
 I Enjoyed building this project - Hope you find it as interesting as I did. 🙂
-Built By [Ejiro-Oghene Avwerhota](https://www.linkedin.com/in/ejiro-oghene-avwerhota-5369a013b/)
+Built By [Veg@sAndroid](https://vegasandroid.github.io/)
